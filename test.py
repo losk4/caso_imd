@@ -1,7 +1,7 @@
 import os
 
-os.add_dll_directory('C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/bin')
-os.add_dll_directory('C:/Users/Loska/Desktop/zlib/dll_x64')
+#os.add_dll_directory('C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/bin')
+#os.add_dll_directory('C:/Users/Loska/Desktop/zlib/dll_x64')
 
 # Ignorar información de Tensorflow
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'

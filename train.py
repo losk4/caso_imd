@@ -1,7 +1,7 @@
 import os
 
-os.add_dll_directory('C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/bin')
-os.add_dll_directory('C:/Users/Loska/Desktop/zlib/dll_x64')
+#os.add_dll_directory('C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/bin')
+#os.add_dll_directory('C:/Users/Loska/Desktop/zlib/dll_x64')
 
 # Ignorar información de Tensorflow
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -41,21 +41,6 @@ if __name__ == '__main__':
         #zca_whitening=True,
         brightness_range=[0.5, 1.5]
     )
-
-    '''data = tf.keras.utils.image_dataset_from_directory(
-        train_dir,
-        label_mode="categorical",
-        color_mode="grayscale",
-        batch_size=3654,
-        image_size=(256, 256),
-        shuffle=True
-    )
-
-    for x, y in data:
-        print(x)
-
-    while True:
-        continue'''
 
     train_data = train_gen.flow_from_directory(
         train_dir,

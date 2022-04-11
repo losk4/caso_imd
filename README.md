@@ -2,6 +2,10 @@
 ### Curso 2021/2022
 ### Autores: María Moreno Cifuentes, Daniel Soler Casesnoves, Isabel Saludes Ferró y Alexey Mengliev
 
-Los datos, modelos y entrenamiento no son personalizables.
+Para testear modelos sobre un conjunto de datos: **test.py -t "directorio_test" -m "fichero_modelo"**
 
-Para testear modelos sobre un conjunto de datos: **test.py -t test_dir -m model_file**
+Este directorio debe de estar explícitamente separado en carpetas para cada clase
+El modelo se guardará en models/model.h5
+
+Nuestro modelo final es el contenido en models/model-final.h5
+El directorio de datos de test final se encuentra en more_data/test_final
