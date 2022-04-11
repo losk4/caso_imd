@@ -1,9 +1,7 @@
 import os
 
-'''
 os.add_dll_directory('C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/bin')
 os.add_dll_directory('C:/Users/Loska/Desktop/zlib/dll_x64')
-'''
 
 # Ignorar información de Tensorflow
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -11,6 +9,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 import tensorflow as tf
 import argparse
+import numpy as np
 
 def parse_args():
 	parser = argparse.ArgumentParser()
@@ -34,4 +33,27 @@ if __name__ == '__main__':
         image_size=(256, 256)
     )
 
+    #print(test_data.class_names)
+
+    output = model.predict(test_data)
+    scores = tf.nn.softmax(output * 1e9)
+    scores = np.argmax(scores)
+
+    predictions = np.array([])
+    labels =  np.array([])
+    for x, y in test_data:
+        predictions = np.concatenate([predictions, np.argmax(model.call(x), axis = -1)])
+        labels = np.concatenate([labels, np.argmax(y.numpy(), axis=-1)])
+
+    confusion = tf.math.confusion_matrix(
+        labels=labels, 
+        predictions=predictions, 
+        num_classes=3
+    ).numpy()
+
+    model.summary()
     model.evaluate(test_data)
+    print("\tFlair\tT1\tT2"+
+            "\nFlair\t"+str(confusion[0][0])+"\t"+str(confusion[0][1])+"\t"+str(confusion[0][2])+
+            "\nT1\t"+str(confusion[1][0])+"\t"+str(confusion[1][1])+"\t"+str(confusion[1][2])+
+            "\nT2\t"+str(confusion[2][0])+"\t"+str(confusion[2][1])+"\t"+str(confusion[2][2]))

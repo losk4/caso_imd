@@ -20,17 +20,63 @@ def get_resnet():
 def get_model():
     model = tf.keras.Sequential([
         tf.keras.layers.Rescaling(1./255, input_shape=(256, 256, 1)),
+        
         tf.keras.layers.Conv2D(16, 3, padding='same', activation='relu'),
         tf.keras.layers.MaxPool2D(2),
+
         tf.keras.layers.Conv2D(32, 3, padding='same', activation='relu'),
         tf.keras.layers.MaxPool2D(2),
-        tf.keras.layers.Conv2D(32, 3, padding='same', activation='relu'),
+
+        tf.keras.layers.Conv2D(64, 3, padding='same', activation='relu'),
         tf.keras.layers.MaxPool2D(2),
-        tf.keras.layers.Dropout(0.4 ),
+
+        tf.keras.layers.Conv2D(128, 3, padding='same', activation='relu'),
+        tf.keras.layers.MaxPool2D(2),
+
         tf.keras.layers.Flatten(),
+
         tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dropout(0.4),
+        
         tf.keras.layers.Dense(num_classes)
     ])
+
+    '''model = tf.keras.Sequential([
+        tf.keras.layers.Rescaling(1./255, input_shape=(256, 256, 1)),
+
+        tf.keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.MaxPool2D(2),
+        tf.keras.layers.Dropout(0.4),
+
+        tf.keras.layers.Conv2D(32, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.MaxPool2D(2),
+        tf.keras.layers.Dropout(0.4),
+
+        tf.keras.layers.Conv2D(64, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.MaxPool2D(2),
+        tf.keras.layers.Dropout(0.4),
+
+        tf.keras.layers.Conv2D(32, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.MaxPool2D(2),
+        tf.keras.layers.Dropout(0.4),
+
+        tf.keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.MaxPool2D(2),
+        tf.keras.layers.Dropout(0.4),
+
+        tf.keras.layers.Flatten(),
+
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.Dropout(0.2),
+
+        tf.keras.layers.Dense(num_classes)
+    ])'''
     
     return model
 

@@ -1,4 +1,4 @@
-# Al final he utilizado generadores ya definidos por Keras en la parte de entrenamiento.
+# Al final he utilizado generadores ya definidos por Keras.
 
 import os
 
